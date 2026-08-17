@@ -3,6 +3,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,6 +35,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float holdAfterFade = 0.5f;
     [SerializeField] private string mainMenuSceneName = "MainMenu";
     private bool endSequenceStarted = false;
+
+    [Header("Wave Ended Display")]
+    [SerializeField] private TextMeshProUGUI waveEndedText;
+    [SerializeField] private float waveEndDisplayDuration = 2f;
+    [SerializeField] private string waveEndedMessage = "Wave Ended";
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -126,7 +132,7 @@ public class GameManager : MonoBehaviour
 
     void Wave1()
     {   WaveCount+=1;
-        spawnLogic.SpawnWave(new int[] { 0, 0,1,1});
+        spawnLogic.SpawnWave(new int[] { 2, 1,0,0});
         
         
     }
@@ -134,19 +140,19 @@ public class GameManager : MonoBehaviour
     void Wave2()
     {
         WaveCount+=1;
-        spawnLogic.SpawnWave(new int[] { 3, 1 ,1,1});
+        spawnLogic.SpawnWave(new int[] { 4, 2,1,1});
     }
 
     void Wave3()
     {
         WaveCount+=1;
-        spawnLogic.SpawnWave(new int[] { 4, 3 ,1,2});
+        spawnLogic.SpawnWave(new int[] { 6, 3,2,2});
     }
 
     void Wave4()
     {
         WaveCount+=1;
-        spawnLogic.SpawnWave(new int[] { 5, 4 ,2,1});
+        spawnLogic.SpawnWave(new int[]{ 8, 5,2,2});
     }
 
     void Wave5()
@@ -166,13 +172,32 @@ public class GameManager : MonoBehaviour
 
             PlayerController.BonusDMG+=10f;
             PlayerController.CritChance+=0.1f;
-            PlayerController.TeleportToTarget();
-            inCabin=true;
+
+            StartCoroutine(WaveEndedSequence());
             
             
         }
 
         
+    }
+
+    private IEnumerator WaveEndedSequence()
+    {
+        PlayerController.TeleportToTarget();
+        inCabin=true;
+
+        if (waveEndedText != null)
+        {
+            waveEndedText.text = waveEndedMessage;
+            waveEndedText.gameObject.SetActive(true);
+        }
+
+        yield return new WaitForSeconds(waveEndDisplayDuration);
+
+        if (waveEndedText != null)
+        {
+            waveEndedText.gameObject.SetActive(false);
+        }
     }
 
 void Spawn()
