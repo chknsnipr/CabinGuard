@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEditor.ProjectWindowCallback;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,6 +29,12 @@ public class GameManager : MonoBehaviour
 
     public static bool End=false;
 
+    [Header("End Game Fade")]
+    [SerializeField] private CanvasGroup fadeCanvasGroup;
+    [SerializeField] private float fadeDuration = 2f;
+    [SerializeField] private float holdAfterFade = 0.5f;
+    [SerializeField] private string mainMenuSceneName = "MainMenu";
+    private bool endSequenceStarted = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -48,6 +56,13 @@ public class GameManager : MonoBehaviour
 
     void WaveLogic()
     {
+        if (End && !endSequenceStarted)
+        {
+            endSequenceStarted = true;
+            StartCoroutine(EndGameFade());
+            return;
+        }
+
         if(!inCabin && inWave==false)
         {
 
@@ -70,6 +85,31 @@ public class GameManager : MonoBehaviour
         
     }
 
+    private IEnumerator EndGameFade()
+    {
+        if (fadeCanvasGroup != null)
+        {
+            fadeCanvasGroup.blocksRaycasts = true;
+
+            float t = 0f;
+            float startAlpha = fadeCanvasGroup.alpha;
+
+            while (t < fadeDuration)
+            {
+                t += Time.deltaTime;
+                fadeCanvasGroup.alpha = Mathf.Lerp(startAlpha, 1f, t / fadeDuration);
+                yield return null;
+            }
+
+            fadeCanvasGroup.alpha = 1f;
+        }
+
+        yield return new WaitForSeconds(holdAfterFade);
+
+        NewWave.CleanVars();
+        SceneManager.LoadScene(mainMenuSceneName);
+    }
+
     void DoorLogic()
     {
         if(!inCabin && LastDoorState==false)
@@ -87,7 +127,7 @@ public class GameManager : MonoBehaviour
 
     void Wave1()
     {   WaveCount+=1;
-        spawnLogic.SpawnWave(new int[] { 2, 1,0,0});
+        spawnLogic.SpawnWave(new int[] { 0, 0,1,1});
         
         
     }
@@ -107,7 +147,7 @@ public class GameManager : MonoBehaviour
     void Wave4()
     {
         WaveCount+=1;
-        spawnLogic.SpawnWave(new int[] { 6, 4 ,2,1});
+        spawnLogic.SpawnWave(new int[] { 5, 4 ,2,1});
     }
 
     void Wave5()
