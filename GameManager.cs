@@ -172,6 +172,8 @@ public class GameManager : MonoBehaviour
 
             PlayerController.BonusDMG+=10f;
             PlayerController.CritChance+=0.1f;
+            PlayerController.CritDMG+=0.4f;
+            PlayerController.speed+=0.5f;
 
             StartCoroutine(WaveEndedSequence());
             
