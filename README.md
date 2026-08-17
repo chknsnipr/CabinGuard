@@ -10,4 +10,10 @@ changes to be added:
 2:smoother game intro and exit.
 3:Overall QOL improvement.
 
+Current Successes:
+In my opinion, the game turned out looking really cool, ive used the enemy designed from free sources and built the map custom, i really like how the map, small details of fallen allies and resting allies, blood affects and lighting have turned out, aswell as the natural environment of the map.
+
+Current Flaws:
+Yes, Enemy motion still may malfunction here and there on specific places since im not an expert when it comes to enemy navigation.
+Game may be a bit too hard since ive not had the knowledge on how to effieciently scale because doing that would take too much time and get out of the scope of this hackathon(macondo).
 
