@@ -88,7 +88,7 @@ public class visualdetection : MonoBehaviour
     {
         if(Movement.heal==true)
         {
-            enemyhealth+=100f*GameManager.WaveCount*0.2f;
+            enemyhealth+=100f*GameManager.WaveCount*0.4f;
             Movement.heal=false;
         }
     }
