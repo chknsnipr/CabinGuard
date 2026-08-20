@@ -77,9 +77,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Recoil")]
     public static float recoilKickback;
-    [SerializeField] private float recoilRotationKick = 5f;
-    [SerializeField] private float recoilSnappiness = 12f;
-    [SerializeField] private float recoilReturnSpeed = 6f;
+    [SerializeField] private float recoilRotationKick = 0f;
+    [SerializeField] private float recoilSnappiness = 0f;
+    [SerializeField] private float recoilReturnSpeed = 0f;
     private Vector3 currentRecoilOffset;
     private Vector3 targetRecoilOffset;
     private float currentRecoilTilt;
@@ -87,10 +87,10 @@ public class PlayerController : MonoBehaviour
     private bool lastShotState = false;
 
     [Header("Weapon Recoil Kickback")]
-    [SerializeField] private float weaponRecoilKickback = 0.08f;   // how far the gun kicks back on shot
-    [SerializeField] private float weaponRecoilRotationKick = 8f;  // how much the gun tips up on shot
-    [SerializeField] private float weaponRecoilSnappiness = 14f;
-    [SerializeField] private float weaponRecoilReturnSpeed = 7f;
+    [SerializeField] private float weaponRecoilKickback = 00f;   // how far the gun kicks back on shot
+    [SerializeField] private float weaponRecoilRotationKick = 0f;  // how much the gun tips up on shot
+    [SerializeField] private float weaponRecoilSnappiness = 0f;
+    [SerializeField] private float weaponRecoilReturnSpeed = 0f;
     private Vector3 currentWeaponRecoilOffset;
     private Vector3 targetWeaponRecoilOffset;
     private float currentWeaponRecoilTilt;
