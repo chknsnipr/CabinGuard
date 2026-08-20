@@ -19,6 +19,7 @@ public class NewWave : MonoBehaviour
         PlayerController.CritDMG=1.5f;
         PlayerController.CritChance=0.1f;
         PlayerController.StaminaLimit=100f;
+        PlayerController.stamina=100f;
         PlayerController.BonusDMG=0f;
         GameManager.WaveCount=1;
         GameManager.inWave=false;
