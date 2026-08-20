@@ -38,7 +38,7 @@ public class GunManager : MonoBehaviour
                 CurrentLoad=0.6f;
                 DMG=29f;
                 PlayerController.CritDMG=2f;
-                PlayerController.recoilKickback=.5f;
+                PlayerController.weaponRecoilKickback=2.5f;
                 muzzleflash.FlashIntensity=10f;
             }
             else if (isSniper==true)
@@ -51,7 +51,7 @@ public class GunManager : MonoBehaviour
                 CurrentLoad=3f;
                 DMG=140f;
                 PlayerController.CritChance=0f;
-                PlayerController.recoilKickback=2f;
+                PlayerController.weaponRecoilKickback=5f;
                 muzzleflash.FlashIntensity=15f;
             }
             else if (ar==true)
@@ -64,7 +64,7 @@ public class GunManager : MonoBehaviour
                 isPistol=false;
                 isSniper=false;
                 PlayerController.CritChance=0.25f;
-                PlayerController.recoilKickback=.3f;
+                PlayerController.weaponRecoilKickback=1.1f;
                 muzzleflash.FlashIntensity=6f;
             }
 
